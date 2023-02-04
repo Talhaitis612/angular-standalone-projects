@@ -1,17 +1,18 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import { AppRoutingModule } from './app/app-routing.module';
 
+import { AppComponent } from './app/app.component';
+// import { AnalyticsService } from './app/shared/analytics.service';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));
-// you can bootstrap component just like that, it will automatically create the browser environment
-//  and provide your services here 
 bootstrapApplication(AppComponent, {
-  providers : []
+  providers: [
+    // AnalyticsService,
+    importProvidersFrom(AppRoutingModule)
+  ],
 });
